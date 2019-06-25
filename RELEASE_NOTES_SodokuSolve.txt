@@ -45,12 +45,12 @@ SudokuSolve RELEASE V0.2 Beta BUILD 5 Revision 110
 Date: 25 June 2019
 - Undo move list and button - Move History List
 	- Clear when Input Fixed Values toggled.
-- Fix cycles to show corrrectly
-- On cell double click set focust to selectionTextBox
+- Fix cycles to show correctly
+- On cell double click set focus to selectionTextBox
 - Clear selection when Input Fixed Values toggled.
 - Play sound when invalid move
 - Fix spelling of Sudoku.
-
+- Remove SSHLib
 
 
 
