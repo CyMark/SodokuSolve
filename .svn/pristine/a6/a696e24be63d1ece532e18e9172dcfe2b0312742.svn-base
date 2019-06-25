@@ -1,0 +1,119 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace SodokuSolve
+{
+    public class BoardGrafix
+    {
+        PictureBox Board;
+        Graphics g;
+
+        Point topLeft;
+        Point bottomRight;
+        Point gridAnchor;
+        const int minCellAtomSize = 10;
+        int cellAtomSize;
+        int frameSize;
+        int cellSize;
+        Board SodokuBoard;
+        
+        public BoardGrafix(PictureBox boardArea)
+        {
+            Board = boardArea;
+            g = Board.CreateGraphics();
+            BoardSize = boardArea.Width;
+            if (boardArea.Height < BoardSize)
+            {
+                BoardSize = boardArea.Height;
+                topLeft = new Point((boardArea.Width-BoardSize)/2, 0);
+                bottomRight = new Point(topLeft.X + BoardSize - 1, BoardSize - 1);
+            }
+            else
+            {
+                topLeft = new Point(0, (boardArea.Height - BoardSize)/2);
+                bottomRight = new Point(BoardSize - 1, topLeft.Y + BoardSize - 1);
+            }
+            // calc atom size
+            cellAtomSize = (BoardSize - 30) / 27;
+            frameSize = 27 * cellAtomSize + 30;
+            int gridOffset = (BoardSize - frameSize) / 2;
+            gridAnchor = new Point(topLeft.X + gridOffset, topLeft.Y + gridOffset);
+
+            cellSize = 9 * cellAtomSize + 8; // exl grid frame
+
+            SodokuBoard = new Board(gridAnchor, g, cellAtomSize);
+            SodokuBoard.SetRank(new GridLocation(6, 5), 9);
+            SodokuBoard.ShowPossibleMoves = true;
+
+        }
+
+        public int BoardSize { get; private set; }
+
+
+
+        public void InitBoard()
+        {
+            
+            g.Clear(Color.LightYellow);
+            //g.DrawRectangle(new Pen(Color.Black), Board.Bounds);
+            //g.DrawLine(new Pen(Color.Black), new Point(10, 10), new Point(100, 100));
+        }
+
+
+        
+        public void RenderBoard()
+        {
+            InitBoard();
+            Border();
+            SodokuBoard.Draw();
+            //BoardFrame();
+            //BoardCells();
+        }
+
+        public void Border()
+        {
+            g.DrawRectangle(new Pen(Color.Black), new Rectangle(topLeft.X, topLeft.Y, BoardSize - 1, BoardSize - 1));
+        }
+
+        public void BoardFrame()
+        {
+            Pen gridPen = new Pen(Color.Gray);
+            g.DrawRectangle(gridPen, new Rectangle(gridAnchor, new Size(frameSize - 1, frameSize - 1)));
+            // vertical bars:
+            g.DrawLine(gridPen, gridAnchor.X + cellSize, gridAnchor.Y, gridAnchor.X + cellSize, gridAnchor.Y + frameSize - 1); // vert bar 1.1
+            g.DrawLine(gridPen, gridAnchor.X + cellSize+1, gridAnchor.Y, gridAnchor.X + cellSize+1, gridAnchor.Y + frameSize - 1); // vert bar 1.2
+            g.DrawLine(gridPen, gridAnchor.X + 2 * cellSize + 2, gridAnchor.Y, gridAnchor.X + 2 * cellSize + 2, gridAnchor.Y + frameSize - 1); // vert bar 2.1
+            g.DrawLine(gridPen, gridAnchor.X + 2*cellSize + 3, gridAnchor.Y, gridAnchor.X + 2 * cellSize + 3, gridAnchor.Y + frameSize - 1); // vert bar 2.2
+            // horizontal bars:
+            g.DrawLine(gridPen, gridAnchor.X, gridAnchor.Y + cellSize, gridAnchor.X + frameSize - 1, gridAnchor.Y + cellSize); // horz bar 1.1
+            g.DrawLine(gridPen, gridAnchor.X, gridAnchor.Y + cellSize+1, gridAnchor.X + frameSize - 1, gridAnchor.Y + cellSize+1); // horz bar 1.2
+            g.DrawLine(gridPen, gridAnchor.X, gridAnchor.Y + 2*cellSize + 2, gridAnchor.X + frameSize - 1, gridAnchor.Y + 2 * cellSize + 2); // horz bar 2.1
+            g.DrawLine(gridPen, gridAnchor.X, gridAnchor.Y + 2 * cellSize + 3, gridAnchor.X + frameSize - 1, gridAnchor.Y + 2 * cellSize + 3); // horz bar 2.2
+        }
+
+        public void BoardCells()
+        {
+            Point atomLoc = new Point(gridAnchor.X + 1, gridAnchor.Y + 1);
+            //CellAtom atom = new CellAtom(atomLoc, g, cellAtomSize);
+            //atom.Rank = 5;
+            //atom.Draw();
+
+            SubGrid sgrid = new SubGrid(atomLoc, g, cellAtomSize);
+            sgrid.Draw();
+
+            /*Cell cell = new Cell(atomLoc, g, cellAtomSize);
+            cell.Rank = 0;
+            cell.ShowInnerGrid = true;
+            cell.ClearAvailableRank(9);
+            cell.IsSelected = true;
+            cell.Draw();*/
+
+        }
+
+    }
+}

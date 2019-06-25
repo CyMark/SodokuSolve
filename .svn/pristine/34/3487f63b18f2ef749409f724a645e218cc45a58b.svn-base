@@ -1,0 +1,38 @@
+SodokuSolve RELEASE NOTES
+Date: 21 June 2019
+
+Description:  Winform Sodoku Game.  Form and graphics was prototyped via WinformTest1.
+
+.NET 4.6.1
+
+Repository:
+https://cymarklargo.com:8443/svn/VS2017/SodokuSolve
+
+
+
+SodokuSolve RELEASE V0.0 Alpha BUILD 1 Revision 105
+Date: 21 June 2019
+- Basic Winform with Quit button
+
+
+SodokuSolve RELEASE V0.0 Alpha BUILD 2 Revision 106
+Date: 22 June 2019
+- Resurrect the WinformTest1 application as the starting point for the game.
+- Complete the graphics and UI interaction before introducing and game logic (from SodokuLib).
+- Added Class SubGrid to draw the 9 3x3 cells.
+- Get UI functions working as far as display is concerned.
+
+
+SodokuSolve RELEASE V0.0 Alpha BUILD 3 Revision 107
+Date: 23 June 2019
+- Focusing on adding controls and input for UI:
+	- Add Clear total board
+	- Input of Fixed values
+	- Double click on cells
+	- Input box
+	- Notice box
+	- Import function for fixed values
+
+
+
+===== end =====

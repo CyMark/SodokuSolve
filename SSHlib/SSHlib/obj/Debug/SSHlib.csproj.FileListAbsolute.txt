@@ -1,0 +1,5 @@
+c:\users\piet_000\documents\visual studio 2017\Projects\SSHlib\SSHlib\bin\Debug\SSHlib.dll
+c:\users\piet_000\documents\visual studio 2017\Projects\SSHlib\SSHlib\bin\Debug\SSHlib.pdb
+c:\users\piet_000\documents\visual studio 2017\Projects\SSHlib\SSHlib\obj\Debug\SSHlib.dll
+c:\users\piet_000\documents\visual studio 2017\Projects\SSHlib\SSHlib\obj\Debug\SSHlib.pdb
+c:\users\piet_000\documents\visual studio 2017\Projects\SSHlib\SSHlib\obj\Debug\SSHlib.csprojResolveAssemblyReference.cache

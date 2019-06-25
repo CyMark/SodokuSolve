@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SodokuSolve
+{
+    public partial class SodokuForm : Form
+    {
+        BoardGrafix Tboard;
+
+        public SodokuForm()
+        {
+            InitializeComponent();
+            InitializeApplication();
+        }
+
+
+        private void InitializeApplication()
+        {
+            this.Text = "SodokuSolve RELEASE V0.0 Alpha BUILD 2 Revision 106";
+            pictureBox1.BackColor = Color.White;
+            Tboard = new BoardGrafix(pictureBox1);
+        }
+
+
+
+        //---------------------------------------------------------------------------------------------------
+        //  Form Events
+        //---------------------------------------------------------------------------------------------------
+
+        private void quitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Quit?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+            if (res.ToString() == "OK")
+            { Application.Exit(); }
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            Tboard.RenderBoard();
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            //Tboard.RenderBoard();
+        }
+
+        private void SodokuForm_Paint(object sender, PaintEventArgs e)
+        {
+            Tboard.RenderBoard();
+        }
+    }
+}

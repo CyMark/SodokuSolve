@@ -1,0 +1,20 @@
+SodokuSolve RELEASE NOTES
+Date: 21 June 2019
+
+Description:  Winform Sodoku Game.  Form and graphics was prototyped via WinformTest1.
+
+.NET 4.6.1
+
+Repository:
+https://cymarklargo.com:8443/svn/VS2017/SodokuSolve
+
+
+
+SodokuSolve RELEASE V0.0 Alpha BUILD 1 Revision 105
+Date: 21 June 2019
+- Basic Winform with Quit button
+
+
+
+
+===== end =====

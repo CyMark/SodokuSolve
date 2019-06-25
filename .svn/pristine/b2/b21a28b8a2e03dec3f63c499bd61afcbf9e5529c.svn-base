@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SodokuSolve
+{
+    public partial class SodokuForm : Form
+    {
+        public SodokuForm()
+        {
+            InitializeComponent();
+            InitializeApplication();
+        }
+
+
+        private void InitializeApplication()
+        {
+            this.Text = "SodokuSolve RELEASE V0.0 Alpha BUILD 1 Revision 105";
+        }
+
+
+
+        //---------------------------------------------------------------------------------------------------
+        //  Form Events
+        //---------------------------------------------------------------------------------------------------
+
+        private void quitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Quit?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+            if (res.ToString() == "OK")
+            { Application.Exit(); }
+        }
+    }
+}

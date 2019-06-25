@@ -1,0 +1,226 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SodokuSolve
+{
+    public partial class SodokuForm : Form
+    {
+        BoardGrafix Tboard;
+
+        public SodokuForm()
+        {
+            InitializeComponent();
+            InitializeApplication();
+        }
+
+
+        private void InitializeApplication()
+        {
+            this.Text = "SodokuSolve RELEASE V0.1 Beta BUILD 4 Revision 109";
+            pictureBox1.BackColor = Color.White;
+            Tboard = new BoardGrafix(pictureBox1);
+        }
+
+
+
+        //---------------------------------------------------------------------------------------------------
+        //  Form Events
+        //---------------------------------------------------------------------------------------------------
+
+        private void quitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Quit?", "Exit", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+            if (res.ToString() == "OK")
+            { Application.Exit(); }
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            Tboard.RenderBoard();
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            //Tboard.RenderBoard();
+        }
+
+        private void SodokuForm_Paint(object sender, PaintEventArgs e)
+        {
+            Tboard.RenderBoard();
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            ;
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Point cLoc = e.Location;
+            Tboard.UnSelect();
+            selectionTextBox.Text = "";
+
+            Tboard.SetCellFocus(cLoc);
+            noticeBox.Text = $"X={cLoc.X}, Y={cLoc.Y}\nXpos={Tboard.CellFocus.Xpos}, Ypos={Tboard.CellFocus.Ypos}";
+            if(Tboard.CellFocus.Xpos >= 0) //valid region
+            {
+                Tboard.Select(Tboard.CellFocus);
+            }
+            Tboard.RenderBoard();
+        }
+
+        private void cleareSelectButton_Click(object sender, EventArgs e)
+        {
+            Tboard.UnSelect();
+            
+            selectionTextBox.Text = "";
+            Tboard.RenderBoard();
+        }
+
+        private void pictureBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //int v = e.KeyValue;
+            //noticeBox.Text = $"KeyValue={v}";
+        }
+
+        private void SodokuForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //char c = e.KeyChar;
+            //noticeBox.Text = $"KeyChar={c}";
+        }
+
+        private void selectionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(Tboard.HasSelection)
+            {
+                string txt = selectionTextBox.Text;
+                int rank = 0;
+                if (!string.IsNullOrEmpty(txt))
+                {
+                    try { rank = Int32.Parse(txt); }
+                    catch {; }
+                }
+                if (rank < 0 || rank > 9) { rank = 0; }
+                noticeBox.Text = $"selection=[{txt}, rank={rank}]";
+
+                if (Tboard.ValidateMove(Tboard.CellFocus, rank))
+                {
+                    Tboard.SetRank(rank);
+                    Tboard.RenderBoard();
+                }
+                else
+                {
+                    noticeMain.Text = "Invalid Move!";
+                    noticeBox.Text += "\n" + noticeMain.Text;
+                } 
+            }
+        }
+
+        private void checkBoxShowMoves_CheckedChanged(object sender, EventArgs e)
+        {
+            Tboard.ToggleViewPossibleMoves();
+            Tboard.RenderBoard();
+        }
+
+        private void buttonClearGrid_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Are you sure you want to clear the entire grid?", "Clear All", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+            if (res.ToString() == "OK")
+            {
+                Tboard.ClearAll();
+                Tboard.RenderBoard();
+            }
+        }
+
+        private void buttonDemo_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Are you sure you want to clear the entire grid and load the Demo?", "Load Demo", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+            if (res.ToString() == "OK")
+            {
+                Tboard.LoadDemo();
+                Tboard.RenderBoard();
+            }
+        }
+
+
+        // input fixed values
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            string msg = "Are you sure you want to input fixed values?";
+            if (Tboard.IsInputFixedValuesModeSet)
+            {
+                msg = "Are you sure you want to STOP inputing fixed values?";
+            }
+
+            Tboard.ToggleInputFixedValues();
+            noticeBox.Text = msg;
+            return;
+
+           /* string msg = "Are you sure you want to input fixed values?";
+            if(Tboard.IsInputFixedValuesModeSet)
+            {
+                msg = "Are you sure you want to STOP inputing fixed values?";
+            }
+
+            DialogResult res = MessageBox.Show(msg, "Input Fixed Values", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+            if (res.ToString() == "OK")
+            {
+                Tboard.ToggleInputFixedValues();
+            }
+            else
+            {
+                if (Tboard.IsInputFixedValuesModeSet) { checkBox1.Checked = true; }
+                { checkBox1.Checked = false; }
+            }*/
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            noticeMain.Text = "";
+            noticeBox.Text = "";
+            
+            cleareSelectButton_Click(sender, e);
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            quitButton_Click(sender, e);
+        }
+
+        private void buttonAutoComplete_Click(object sender, EventArgs e)
+        {
+            int nrfound = Tboard.AutoCompleteSingle();
+            noticeBox.Text = $"Found {nrfound} items";
+            Tboard.RenderBoard();
+        }
+
+        private void buttonAutoMulti_Click(object sender, EventArgs e)
+        {
+            int tot = 0;
+            int cycle = 0;
+            int nrfound = 0;
+            do
+            {
+                nrfound = Tboard.AutoCompleteSingle();
+                tot += nrfound;
+                cycle++;
+            }
+            while (nrfound > 0);
+            noticeBox.Text = $"Found {tot} items in {cycle} cycles";
+            Tboard.RenderBoard();
+
+        }
+    }
+}

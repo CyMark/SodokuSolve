@@ -1,0 +1,13 @@
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\bin\Debug\SodokuSolve.exe.config
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\bin\Debug\SodokuSolve.exe
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\bin\Debug\SodokuSolve.pdb
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\obj\Debug\SodokuSolve.csprojAssemblyReference.cache
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\obj\Debug\SodokuSolve.SodokuForm.resources
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\obj\Debug\SodokuSolve.Properties.Resources.resources
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\obj\Debug\SodokuSolve.csproj.GenerateResource.cache
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\obj\Debug\SodokuSolve.csproj.CoreCompileInputs.cache
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\obj\Debug\SodokuSolve.exe
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\obj\Debug\SodokuSolve.pdb
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\bin\Debug\SodukuLib.dll
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\bin\Debug\SodukuLib.pdb
+C:\Users\piet_000\Documents\Visual Studio 2017\Projects\SodokuSolve\SodokuSolve\obj\Debug\SodokuSolve.csproj.CopyComplete
