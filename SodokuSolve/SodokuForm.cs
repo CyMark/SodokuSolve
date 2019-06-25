@@ -23,7 +23,7 @@ namespace SodokuSolve
 
         private void InitializeApplication()
         {
-            this.Text = "SodokuSolve RELEASE V0.2 Beta BUILD 5 Revision 110";
+            this.Text = "SudokuSolve RELEASE V0.2 Beta BUILD 5 Revision 110";
             pictureBox1.BackColor = Color.White;
             Tboard = new BoardGrafix(pictureBox1);
         }
